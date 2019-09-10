@@ -31,7 +31,7 @@ class KafkaConsumerConfig {
 
     fun kafkaListenerContainerFactory(groupId: String): ConcurrentKafkaListenerContainerFactory<String, String> {
         val factory = ConcurrentKafkaListenerContainerFactory<String, String>()
-        factory.setConsumerFactory(consumerFactory(groupId))
+        factory.consumerFactory = consumerFactory(groupId)
         return factory
     }
 
@@ -75,8 +75,7 @@ class KafkaConsumerConfig {
     @Bean
     fun greetingKafkaListenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, Greeting> {
         val factory = ConcurrentKafkaListenerContainerFactory<String, Greeting>()
-        factory.setConsumerFactory(greetingConsumerFactory())
+        factory.consumerFactory = greetingConsumerFactory()
         return factory
     }
-
 }
