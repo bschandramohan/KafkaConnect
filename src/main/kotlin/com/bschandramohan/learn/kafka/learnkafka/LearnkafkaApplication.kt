@@ -1,5 +1,7 @@
 package com.bschandramohan.learn.kafka.learnkafka
 
+import com.bschandramohan.learn.kafka.learnkafka.samples.MessageListener
+import com.bschandramohan.learn.kafka.learnkafka.samples.MessageProducer
 import java.util.concurrent.TimeUnit
 
 import org.springframework.boot.SpringApplication

@@ -1,4 +1,4 @@
-package com.bschandramohan.learn.kafka.learnkafka
+package com.bschandramohan.learn.kafka.learnkafka.samples
 
 import java.util.HashMap
 

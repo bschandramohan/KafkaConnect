@@ -1,4 +1,4 @@
-package com.bschandramohan.learn.kafka.learnkafka
+package com.bschandramohan.learn.kafka.learnkafka.samples
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
