@@ -14,16 +14,16 @@ class MessageProducer {
     private val kafkaTemplate: KafkaTemplate<String, String>? = null
 
     @Value(value = "\${message.topic.name}")
-    private val topicName: String? = null
+    private lateinit var topicName: String
 
     @Value(value = "\${partitioned.topic.name}")
-    private val partionedTopicName: String? = null
+    private lateinit var partionedTopicName: String
 
     @Value(value = "\${filtered.topic.name}")
-    private val filteredTopicName: String? = null
+    private lateinit var filteredTopicName: String
 
     @Value(value = "\${greeting.topic.name}")
-    private val greetingTopicName: String? = null
+    private lateinit var greetingTopicName: String
 
     fun sendMessage(message: String) {
 

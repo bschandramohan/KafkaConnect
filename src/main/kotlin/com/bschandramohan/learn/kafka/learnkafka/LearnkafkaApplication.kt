@@ -30,7 +30,9 @@ private fun runSamples(context: ConfigurableApplicationContext) {
      * It will also be received by the listener with
      * headersKafkaListenerContainerFactory as container factory
      */
-    producer.sendMessage("Hello, World!")
+    for (i in 0..4) {
+        producer.sendMessage("Hello, World $i!")
+    }
     listener.latch.await(10, TimeUnit.SECONDS)
 
     /*

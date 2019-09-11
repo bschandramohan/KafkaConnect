@@ -20,10 +20,18 @@ class MessageListener {
 
     @KafkaListener(topics = ["\${message.topic.name}"], groupId = "foo", containerFactory = "fooKafkaListenerContainerFactory")
     fun listenGroupFoo(message: String) {
-        println("Received Message in group 'foo': $message")
+        println("Received Message in group 'foo' by listenGroupFoo: $message")
         latch.countDown()
     }
 
+    // Another listener to the same consumer group
+    @KafkaListener(topics = ["\${message.topic.name}"], groupId = "foo", containerFactory = "fooKafkaListenerContainerFactory")
+    fun listenGroupAnother(message: String) {
+        println("Received Message in group 'foo' by listenGroupAnother: $message")
+        latch.countDown()
+    }
+
+    // A different consumer group so that it will not receive the message
     @KafkaListener(topics = ["\${message.topic.name}"], groupId = "bar", containerFactory = "barKafkaListenerContainerFactory")
     fun listenGroupBar(message: String) {
         println("Received Message in group 'bar': $message")
