@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.ConfigurableApplicationContext
 
 @SpringBootApplication
 class LearnKafkaApplication
@@ -12,8 +13,15 @@ fun main(args: Array<String>) {
 
     val context = SpringApplication.run(LearnKafkaApplication::class.java, *args)
 
+    runSamples(context)
+
+    context.close()
+}
+
+private fun runSamples(context: ConfigurableApplicationContext) {
     val producer = context.getBean(MessageProducer::class.java)
     val listener = context.getBean(MessageListener::class.java)
+
     /*
      * Sending a Hello World message to topic 'siri'.
      * Must be received by both listeners with group foo
@@ -44,6 +52,4 @@ fun main(args: Array<String>) {
     producer.sendMessageToFiltered("Hello Siri!")
     producer.sendMessageToFiltered("Hello World!")
     listener.filterLatch.await(10, TimeUnit.SECONDS)
-
-    context.close()
 }

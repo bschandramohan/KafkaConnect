@@ -26,8 +26,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    
+    // Kafka related
     implementation("org.springframework.kafka:spring-kafka:2.2.8.RELEASE")
     implementation("com.fasterxml.jackson.core:jackson-databind")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
