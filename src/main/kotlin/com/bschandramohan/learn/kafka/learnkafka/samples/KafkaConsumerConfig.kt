@@ -23,7 +23,11 @@ class KafkaConsumerConfig {
     fun consumerFactory(groupId: String): ConsumerFactory<String, String> {
         val props = HashMap<String, Any>()
         props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrapAddress
+        // GroupId is required when group management is used in the topic. Not specifying returns this error:
+        // java.lang.IllegalStateException: No group.id found in consumer config, container properties, or @KafkaListener annotation; a group.id is required when group management is used.
         props[ConsumerConfig.GROUP_ID_CONFIG] = groupId
+        // Thought StringDeserializer is the default but no, required to be specified. Not specifying returns this error:
+        // org.apache.kafka.common.config.ConfigException: Missing required configuration "key.deserializer" which has no default value. (Same for "value.deserializer")
         props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
         props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
         return DefaultKafkaConsumerFactory(props)
